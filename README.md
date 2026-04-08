@@ -6,8 +6,8 @@ A lightweight backend service built with FastAPI to serve project data with filt
 
 ## 🚀 Features
 
-- Filter projects by area
-- Pagination support
+- Filter projects by area (case-insensitive)
+- Pagination support (defaults to page 1, 10 items per page)
 - Sorted results:
   - project value (descending)
   - project name (ascending)
@@ -31,27 +31,30 @@ A lightweight backend service built with FastAPI to serve project data with filt
 
 ## Setup and Installation
 
-1. **(Optional but Recommended) Create a Virtual Environment:**
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/veryresto/project-search-api.git
+   cd project-search-api
+   ```
+
+2. **(Optional but Recommended) Create a Virtual Environment:**
    ```bash
    python3 -m venv venv
    source venv/bin/activate  # On macOS/Linux
    # venv\Scripts\activate  # On Windows
    ```
 
-2. **Install Dependencies:**
+3. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Install Dependencies:**
+4. **Prepare Database:**
    
    Place your SQLite database file in the root directory.
-   Default expected file name:
-   ```bash
-   db.sqlite3
-   ```
+   Default expected file name: `db.sqlite3`
 
-4. **Run the Server:**
+5. **Run the Server:**
    ```bash
    uvicorn app.main:app --reload
    ```
@@ -82,6 +85,7 @@ curl "http://localhost:8000/projects?area=Manchester&page=1&per_page=10"
 ### Assumptions
 - **Area Match:** The `area` parameter is case-insensitive (e.g., searching for "london" will match "London").
 - **Empty results:** If an area is valid but has no projects, the API returns a success response with an empty list and `total: 0`.
+- **Error Response:** Validation errors (like an empty area) return a `400 Bad Request` with a JSON body containing a `detail` message.
 
 ### Tradeoffs
 - **SQLite Direct Access:** For simplicity and performance in this specific task, raw SQL queries are used via the `sqlite3` built-in module instead of an ORM like SQLAlchemy. This keeps the binary small and dependencies minimal.
