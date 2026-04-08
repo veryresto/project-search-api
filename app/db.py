@@ -23,7 +23,7 @@ def get_projects_by_area(area: str, page: int, per_page: int) -> Tuple[List[Dict
         count_query = """
         SELECT COUNT(*) as total
         FROM project_area_map pam
-        WHERE pam.area = ?
+        WHERE pam.area = ? COLLATE NOCASE
         """
         count_row = conn.execute(count_query, (area,)).fetchone()
         total_count = count_row["total"] if count_row else 0
@@ -44,7 +44,7 @@ def get_projects_by_area(area: str, page: int, per_page: int) -> Tuple[List[Dict
         FROM project_area_map pam
         JOIN projects p ON pam.project_id = p.project_id
         JOIN companies c ON p.company_id = c.company_id
-        WHERE pam.area = ?
+        WHERE pam.area = ? COLLATE NOCASE
         ORDER BY p.project_value DESC, p.project_name ASC
         LIMIT ? OFFSET ?
         """
