@@ -73,7 +73,7 @@ curl "http://localhost:8000/projects?area=Manchester&page=1&per_page=10"
 ## Implementation Details
 
 ### Assumptions
-- **Area Match:** The `area` parameter requires an exact match (case-sensitive) as per the database records.
+- **Area Match:** The `area` parameter is case-insensitive (e.g., searching for "london" will match "London").
 - **Empty results:** If an area is valid but has no projects, the API returns a success response with an empty list and `total: 0`.
 
 ### Tradeoffs
