@@ -57,7 +57,14 @@ A lightweight backend service built with FastAPI to serve project data with filt
    ```
    The server will start at `http://localhost:8000`.
 
-## API Documentation
+## 🔗 Live Demo
+ 
+ You can access the live API documentation here:
+ - **Swagger UI:** [https://project-search-api.veryresto.com/docs](https://project-search-api.veryresto.com/docs)
+ 
+ ---
+ 
+ ## API Documentation
 
 Once the server is running, you can access the interactive API docs:
 - Swagger UI: `http://localhost:8000/docs`
