@@ -17,5 +17,4 @@ class ProjectResponse(BaseModel):
     total: int
     projects: List[ProjectBase]
 
-class ErrorResponse(BaseModel):
-    error: str
+

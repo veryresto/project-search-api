@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Query, HTTPException, status
-from app.schemas import ProjectResponse, ErrorResponse
+from app.schemas import ProjectResponse
 from app.service import fetch_projects
 from typing import Optional
 
@@ -10,7 +10,7 @@ def read_root():
     """Simple root message."""
     return {"message": "Welcome to the Project Search API. Use /projects to fetch project data."}
 
-@app.get("/projects", response_model=ProjectResponse, responses={400: {"model": ErrorResponse}})
+@app.get("/projects", response_model=ProjectResponse)
 def get_projects(
     area: str = Query(..., description="Area to filter projects by"),
     page: int = Query(1, gt=0, description="Page number (1-based)"),
