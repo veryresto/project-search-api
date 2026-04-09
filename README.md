@@ -80,6 +80,12 @@ To fetch projects in Manchester:
 curl "http://localhost:8000/projects?area=Manchester&page=1&per_page=10"
 ```
 
+To see an error response (e.g., empty area):
+```bash
+curl "http://localhost:8000/projects?area="
+# Response: {"detail":"Area must be provided and non-empty."}
+```
+
 ## Implementation Details
 
 ### Assumptions
